@@ -1,0 +1,70 @@
+js栈和堆的区别
+
+分基本类型和引用类型：
+
+
+    1.基本类型的存放在栈里（6个）：
+String、字符串
+Number、数
+Symbol  符号
+Boolean、布尔
+null、空       是一个特殊的值，的到的是一个人object
+undefined、未定义
+
+   2. 引用类型存放在堆里（3个）：
+Object、对象
+Array、数组
+Function，函数
+其他
+
+
+栈的案例：
+	值类型 key value 都存储在栈内存中
+	 var a = 100;       // 栈 key  a   value  100
+	 var b = a;          // 栈 key  b   value   100
+	a = 200;            // 栈 key  a   value  200
+	console.log(b);//100
+
+堆的案例：
+	// 引用类型  数据存储在两个地方 栈 和堆
+	//  堆  key 内存地址  value 实际的值
+	var a = {age:20};       //栈   key  a  value a的内存地址
+		               //堆   key  地址   value 实际的值
+	var b = a;	               //栈    key b     value a的内存地址
+	a.age = 21;              // 实际的a在堆中 实际的值21
+	console.log(b.age)   // b 和a在栈执行同一个内存地址      
+	//b.age = 21; 
+
+总结:  栈 里面的值修改相互不影响
+
+
+         堆  修改堆存放值都会有影响，都是引用存放在堆的同一值
+         
+
+总结2:
+
+a基本数据类型赋值给另外的变量b，他们两个没有关联
+var a =15;
+var b = a;
+a的值赋值给b
+a和b没有关联
+
+obj1引用类型直接赋值给另外的变量obj2他们两个有关联
+var obj1 = {a:15}
+var obj2 = obj1
+obj1指向的内存地址赋值给obj2
+obj1和obj2的值都是同一内存地址,在堆中是同一个值
+obj1和obj2相互关联,obj2修改会影响到obj1
+
+
+      栈            （栈的内容如果是基本类型，不相互影响）                                 
+键         值
+obj1       地址 (obj地址指向的是堆的内容)
+obj2       地址 (若是obj2=obj1引用堆的内存地址是一样的)
+
+
+
+
+        堆         （堆是存放引用类型的值的）
+地址       值
+              {}
